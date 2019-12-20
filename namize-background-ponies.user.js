@@ -3,12 +3,9 @@
 // @namespace   http://derpiboo.ru/images/namize_bp
 // @description Namize Background Ponies on Derpibooru!
 // @icon        http://orig13.deviantart.net/d1b5/f/2017/079/6/7/derpy_by_theshadowartist100_by_vcsajen-db2xkv3.png
-// @include     https://derpibooru.org/*
-// @include     https://trixiebooru.org/*
-// @include     https://www.derpibooru.org/*
-// @include     https://www.trixiebooru.org/*
-// @version     1.039
-// @grant       GM_addStyle
+// @match       https://*.derpibooru.org/*
+// @match       https://*.trixiebooru.org/*
+// @version     1.041
 // @inject-into content
 // @noframes
 // @require     https://openuserjs.org/src/libs/soufianesakhi/node-creation-observer.js
@@ -30,12 +27,12 @@
 
 /* ------------------------------------------------------------------------------------------------ */
 
-
+  const SCRIPT_ID = 'namize_bp';
   const names1 = ['', '8-bit', 'Aero', 'Air', 'Almond', 'Alpha', 'Amaranthine', 'Amber', 'American', 'Annoying', 'Apple', 'Apricot', 'Aqua', 'Asian', 'Astral', 'Awesome', 'Bad', 'Beauty', 'Beige', 'Bell', 'Belle', 'Berry', 'Big', 'Bitter', 'Black', 'Blaze', 'Blazing', 'Blue', 'Bold', 'Bon', 'Bright', 'Brisk', 'Broken', 'Bronze', 'Brown', 'Candy', 'Caramel', 'Careless', 'Carrot', 'Charming', 'Cherry', 'Chilly', 'Chimmy', 'Choco', 'Chocolate', 'Chromatic', 'Chubby', 'Citric', 'Classic', 'Clean', 'Clear', 'Clever', 'Cloudy', 'Cocky', 'Coco', 'Cold', 'Cool', 'Copper', 'Corky', 'Correct', 'Cosmic', 'Cranky', 'Crazy', 'Curly', 'Cute', 'Cutie', 'Da’', 'Daring', 'Dark', 'Deadly', 'Delta', 'Derpy', 'Desert', 'Desired', 'Diamond', 'Dim', 'Dirty', 'Ditzy', 'Dizzy', 'DJ', 'Doctor', 'Double', 'Drama', 'Dusk', 'Eastern', 'Easy', 'Emerald', 'Empress', 'Epic', 'European', 'Fancy', 'Fantastic', 'Fast', 'Fat', 'Fifth', 'Filthy', 'First', 'Flash', 'Flirtatious', 'Fluffy', 'Flutter', 'Foggy', 'Fourth', 'Full', 'Funny', 'Fuzzy', 'Gamma', 'General', 'Gentle', 'Ginger', 'Glass', 'Glitter', 'Golden', 'Good', 'Gotta', 'Gray', 'Green', 'Half', 'Half Baked', 'Handsome', 'Happy', 'Hard', 'Hasty', 'Heavy', 'Hematite', 'High', 'Holly', 'Honey', 'Horny', 'Hot', 'Hyper', 'Ice', 'Igneous', 'Innocent', 'Iron', 'Ivory', 'Jasper', 'Large', 'Last', 'Lavender', 'Legendary', 'Lemon', 'Lemony', 'Liberty', 'Light', 'Lightning', 'Lilac', 'Little', 'Lone', 'Long', 'Lovely', 'Low', 'Lucky', 'Main', 'Malachite', 'Melo', 'Metal', 'Meteor', 'Mini', 'Misty', 'Mixed', 'Mud', 'Multicolored', 'My Little', 'Mysterious', 'Mythical', 'Navy', 'Neat', 'Neon', 'Night', 'Noisy', 'Northern', 'Nurse', 'Nyan', 'Old', 'Olive', 'Omega', 'Onyx', 'Orange', 'Over', 'Paper', 'Party', 'Peachy', 'Pear', 'Pearl', 'Perfect', 'Pink', 'Pinkie', 'Platinum', 'Plumy', 'Princess', 'Professor', 'Proud', 'Pure', 'Purple', 'Quartz', 'Queen', 'Quick', 'Rainbow', 'Rainy', 'Red', 'Rosy', 'Ruby', 'Ruff', 'Sad', 'Sapphire', 'Saucy', 'Sea', 'Second', 'Shadow', 'Sharp', 'Shining', 'Short', 'Shy', 'Silken', 'Silver', 'Simply', 'Slow', 'Smart', 'Smooth', 'Snappy', 'Sneaky', 'Soft', 'Sonic', 'Southern', 'Speedy', 'Spicy', 'Starry', 'Stella', 'Stellar', 'Stellate', 'Stinkin\'', 'Stolid', 'Strict', 'Strong', 'Sugar', 'Sunny', 'Super', 'Sweet', 'Tasty', 'The Great and Powerful', 'Third', 'Thunder', 'Timid', 'True', 'Turquoise', 'Twilight', 'Under', 'Vanilla', 'Violet', 'Warning', 'Western', 'White', 'Windy', 'Winy', 'Yellow'];
   const names2 = ['Angel', 'Apple', 'Apples', 'Armor', 'Armour', 'Assassin', 'Autumn', 'Barry', 'Beauty', 'Bee', 'Beetle', 'Bell', 'Belle', 'Berries', 'Blade', 'Blink', 'Blossom', 'Bomb', 'Bon', 'Bone', 'Bones', 'Book', 'Boom', 'Boomer', 'Bread', 'Brooch', 'Brook', 'Bubble', 'Bubbles', 'Bug', 'Bun', 'Bunny', 'Butterfly', 'Button', 'Cake', 'Candle', 'Candy', 'Cargo', 'Cat', 'Changa', 'Charge', 'Cherry', 'Cider', 'Class', 'Clearing', 'Cloud', 'Cola', 'Comet', 'Computer', 'Cook', 'Crasher', 'Crate', 'Cream', 'Creeper', 'Crown', 'Crush', 'Crusher', 'Cupcake', 'Cupcakes', 'Curse', 'Daiquiri', 'Dance', 'Dancer', 'Dash', 'Dasher', 'Dashy', 'Day', 'Days', 'Deal', 'Derp', 'Dessert', 'Devil', 'Dew', 'Diamond', 'Dog', 'Dovahkiin', 'Dream', 'Dress', 'Drop', 'Dubstep', 'Dust', 'Dusty', 'Earring', 'Eclair', 'Egg', 'Emerald', 'Envy', 'Eye', 'Eyes', 'Factory', 'Faith', 'Fall', 'Fear', 'Feather', 'Feathers', 'Fire', 'Flag', 'Flame', 'Flames', 'Flare', 'Floor', 'Flower', 'Flowers', 'Flyer', 'Folder', 'Forest', 'Fork', 'Frost', 'Glass', 'Ground', 'Halo', 'Harvest', 'Hawk', 'Hay', 'Haze', 'Head', 'Heart', 'Hills', 'Hoof', 'Hooves', 'Hope', 'Horn', 'Horns', 'Horseshoe', 'Horseshoes', 'Hunt', 'Hunter', 'Image', 'In Socks', 'Jam', 'Jazz', 'Journal', 'Kettle', 'Key', 'Kill', 'Kills', 'Knife', 'Knight', 'Ladle', 'Lady', 'Lake', 'Lamp', 'Leaf', 'Lemon', 'Lemonade', 'Light', 'List', 'Loaf', 'Love', 'Luna', 'Mane', 'Mess', 'Miner', 'Mint', 'Mints', 'Mist', 'Moon', 'Mouse', 'Muffin', 'Music', 'Necklace', 'Needle', 'News', 'Night', 'Nights', 'Noon', 'Note', 'Notes', 'Nova', 'Patty', 'Pepper', 'Picnic', 'Picture', 'Pie', 'Pirate', 'Pixel', 'Pony', 'Pop', 'Popper', 'Pride', 'Prism', 'Prod', 'Punk', 'Rainbow', 'Rat', 'Reaper', 'Rice', 'Ring', 'Rock', 'Roll', 'Romance', 'Rosette', 'Ruby', 'Runner', 'Saddle', 'Sapphire', 'Scapula', 'Shield', 'Shimmer', 'Shine', 'Shovel', 'Shower', 'Shy', 'Signal', 'Skies', 'Sky', 'Slapjack', 'Snap', 'Snow', 'Song', 'Soul', 'Sparkle', 'Sparky', 'Spawn', 'Sphere', 'Spider', 'Spin', 'Spirit', 'Spoon', 'Spring', 'Stairs', 'Star', 'Stars', 'Stool', 'Strike', 'String', 'Strings', 'Stripe', 'Stripes', 'Stuff', 'Summer', 'Sun', 'Swirl', 'Sword', 'Swords', 'Table', 'Tart', 'Tiara', 'Time', 'Times', 'Top', 'Tree', 'Trees', 'Trixie', 'Tron', 'Twist', 'Vise', 'Water', 'Waterfall', 'Wheat', 'Wind', 'Window', 'Wing', 'Wings', 'Winter', 'Wolf'];
 
 
-  const searchRegexp = new RegExp('Background Pony #([0-9A-F]{2})([0-9A-F]{2})');
+  const searchRegexp = new RegExp('\\bBackground Pony #([0-9A-F]{2})([0-9A-F]{2})\\b');
   const styleCache = new Map();
 
   function getBPName(re, match) {
@@ -82,7 +79,7 @@
     if (!styleCache.has(className)) {
       const cssString = getColorStyle(id);
       styleCache.set(className, cssString);
-      GM_addStyle(`.${className} {${cssString}}`);
+      addStyle(`.${className} {${cssString}}`);
     }
 
     return className;
@@ -144,6 +141,25 @@
     return str.replace(/[&<>]/g, replaceTag);
   }
 
+  const addStyle = (function () {
+    const styleElement = document.createElement('style');
+    if (!document.getElementById(`${SCRIPT_ID}-style`)) {
+      styleElement.setAttribute('type', 'text/css');
+      styleElement.id = `${SCRIPT_ID}-style`;
+      document.body.insertAdjacentElement('afterend', styleElement);
+    }
+    return function (css) {
+      styleElement.innerHTML += css + '\n';
+    };
+  })();
+
+  if (!document.getElementById(`${SCRIPT_ID}-style`)) {
+    const styleElement = document.createElement('style');
+    styleElement.setAttribute('type', 'text/css');
+    styleElement.id = `${SCRIPT_ID}-style`;
+    document.body.insertAdjacentElement('afterend', styleElement);
+  }
+
   const textNodes = document.evaluate( ".//a | .//strong | .//div[@class='metasection'] | .//div[contains(concat(' ', normalize-space(@class), ' '), ' post-author ')] | .//div[contains(concat(' ', normalize-space(@class), ' '), ' communication__body ')] | .//div[@class='small'] | .//div[@class='small-text'] | .//span[@class='block__header__title'] | .//td[@class='topic-lastpost'] | .//td[@class='table--communication-list__last-post'] | .//div[@id='duplicate_reporting']//td[@class='center image-cell'] | .//div[@class='block__content flex communication__options']/div[@class='flex__right'] | .//span[@class='spacing-right'] | .//main[@id='content']/h1 | .//div[@class='block__content alternating-color'] | .//div[@class='block__content flex alternating-color']/div[@class='flex__grow'] | .//td[@class='blank']",
     document.body,
     null,
@@ -155,5 +171,5 @@
     processVanillaJSNode(node);
   }
 
-  NodeCreationObserver.onCreation('div.comment_info > strong, div.comment_body a, div.post-prevue a, span.post-author, div.post-author, span.communication__body__sender-name, div.communication__body__sender-name, div.post-text a, div.communication__body__text a, .block__header__item', processVanillaJSNode);
+  NodeCreationObserver.onCreation('div.comment_info > strong, div.comment_body a, div.post-prevue a, span.post-author, div.post-author, .communication__body__sender-name > strong, div.post-text a, div.communication__body__text a, .block__header__item', processVanillaJSNode);
 })();
