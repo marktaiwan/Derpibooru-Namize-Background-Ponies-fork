@@ -5,7 +5,7 @@
 // @icon        http://orig13.deviantart.net/d1b5/f/2017/079/6/7/derpy_by_theshadowartist100_by_vcsajen-db2xkv3.png
 // @match       https://*.derpibooru.org/*
 // @match       https://*.trixiebooru.org/*
-// @version     1.041
+// @version     1.042
 // @inject-into content
 // @noframes
 // @require     https://openuserjs.org/src/libs/soufianesakhi/node-creation-observer.js
@@ -141,24 +141,15 @@
     return str.replace(/[&<>]/g, replaceTag);
   }
 
-  const addStyle = (function () {
-    const styleElement = document.createElement('style');
-    if (!document.getElementById(`${SCRIPT_ID}-style`)) {
-      styleElement.setAttribute('type', 'text/css');
-      styleElement.id = `${SCRIPT_ID}-style`;
-      document.body.insertAdjacentElement('afterend', styleElement);
-    }
-    return function (css) {
-      styleElement.innerHTML += css + '\n';
-    };
-  })();
-
-  if (!document.getElementById(`${SCRIPT_ID}-style`)) {
-    const styleElement = document.createElement('style');
-    styleElement.setAttribute('type', 'text/css');
-    styleElement.id = `${SCRIPT_ID}-style`;
-    document.body.insertAdjacentElement('afterend', styleElement);
+  function addStyle(css) {
+    const styleElement = document.getElementById(`${SCRIPT_ID}-style`);
+    styleElement.innerHTML += css + '\n';
   }
+
+  const styleElement = document.createElement('style');
+  styleElement.setAttribute('type', 'text/css');
+  styleElement.id = `${SCRIPT_ID}-style`;
+  document.body.insertAdjacentElement('afterend', styleElement);
 
   const textNodes = document.evaluate( ".//a | .//strong | .//div[@class='metasection'] | .//div[contains(concat(' ', normalize-space(@class), ' '), ' post-author ')] | .//div[contains(concat(' ', normalize-space(@class), ' '), ' communication__body ')] | .//div[@class='small'] | .//div[@class='small-text'] | .//span[@class='block__header__title'] | .//td[@class='topic-lastpost'] | .//td[@class='table--communication-list__last-post'] | .//div[@id='duplicate_reporting']//td[@class='center image-cell'] | .//div[@class='block__content flex communication__options']/div[@class='flex__right'] | .//span[@class='spacing-right'] | .//main[@id='content']/h1 | .//div[@class='block__content alternating-color'] | .//div[@class='block__content flex alternating-color']/div[@class='flex__grow'] | .//td[@class='blank']",
     document.body,
