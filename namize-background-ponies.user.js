@@ -5,7 +5,7 @@
 // @icon        http://orig13.deviantart.net/d1b5/f/2017/079/6/7/derpy_by_theshadowartist100_by_vcsajen-db2xkv3.png
 // @match       https://*.derpibooru.org/*
 // @match       https://*.trixiebooru.org/*
-// @version     1.042
+// @version     1.043
 // @inject-into content
 // @noframes
 // @require     https://openuserjs.org/src/libs/soufianesakhi/node-creation-observer.js
@@ -162,5 +162,5 @@
     processVanillaJSNode(node);
   }
 
-  NodeCreationObserver.onCreation('div.comment_info > strong, div.comment_body a, div.post-prevue a, span.post-author, div.post-author, .communication__body__sender-name > strong, div.post-text a, div.communication__body__text a, .block__header__item', processVanillaJSNode);
+  NodeCreationObserver.onCreation('div.comment_info > strong, div.comment_body a, div.post-prevue a, span.post-author, div.post-author, .communication__body__sender-name > strong, div.post-text a, div.communication__body__text a, .block__header__item, .communication a', processVanillaJSNode);
 })();
