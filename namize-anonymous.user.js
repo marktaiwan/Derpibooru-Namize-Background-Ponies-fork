@@ -1,10 +1,8 @@
 // ==UserScript==
-// @name        Namize Background Ponies!
-// @namespace   http://derpiboo.ru/images/namize_bp
-// @description Namize Background Ponies on Derpibooru!
-// @icon        http://orig13.deviantart.net/d1b5/f/2017/079/6/7/derpy_by_theshadowartist100_by_vcsajen-db2xkv3.png
-// @match       https://*.derpibooru.org/*
-// @match       https://*.trixiebooru.org/*
+// @name        Namize Anonymous Users!
+// @namespace   https://github.com/marktaiwan/
+// @description Namize anonymous users on Furbooru!
+// @match       https://*.furbooru.org/*
 // @version     1.043
 // @inject-into content
 // @noframes
@@ -23,7 +21,7 @@
   const fullNameColor = false;
 
   // change this to false if you don't wish add " (Background Pony)" to the end of anon's "names"
-  const addBackgroundPony = true;
+  const addAnon = true;
 
 /* ------------------------------------------------------------------------------------------------ */
 
@@ -32,7 +30,7 @@
   const names2 = ['Angel', 'Apple', 'Apples', 'Armor', 'Armour', 'Assassin', 'Autumn', 'Barry', 'Beauty', 'Bee', 'Beetle', 'Bell', 'Belle', 'Berries', 'Blade', 'Blink', 'Blossom', 'Bomb', 'Bon', 'Bone', 'Bones', 'Book', 'Boom', 'Boomer', 'Bread', 'Brooch', 'Brook', 'Bubble', 'Bubbles', 'Bug', 'Bun', 'Bunny', 'Butterfly', 'Button', 'Cake', 'Candle', 'Candy', 'Cargo', 'Cat', 'Changa', 'Charge', 'Cherry', 'Cider', 'Class', 'Clearing', 'Cloud', 'Cola', 'Comet', 'Computer', 'Cook', 'Crasher', 'Crate', 'Cream', 'Creeper', 'Crown', 'Crush', 'Crusher', 'Cupcake', 'Cupcakes', 'Curse', 'Daiquiri', 'Dance', 'Dancer', 'Dash', 'Dasher', 'Dashy', 'Day', 'Days', 'Deal', 'Derp', 'Dessert', 'Devil', 'Dew', 'Diamond', 'Dog', 'Dovahkiin', 'Dream', 'Dress', 'Drop', 'Dubstep', 'Dust', 'Dusty', 'Earring', 'Eclair', 'Egg', 'Emerald', 'Envy', 'Eye', 'Eyes', 'Factory', 'Faith', 'Fall', 'Fear', 'Feather', 'Feathers', 'Fire', 'Flag', 'Flame', 'Flames', 'Flare', 'Floor', 'Flower', 'Flowers', 'Flyer', 'Folder', 'Forest', 'Fork', 'Frost', 'Glass', 'Ground', 'Halo', 'Harvest', 'Hawk', 'Hay', 'Haze', 'Head', 'Heart', 'Hills', 'Hoof', 'Hooves', 'Hope', 'Horn', 'Horns', 'Horseshoe', 'Horseshoes', 'Hunt', 'Hunter', 'Image', 'In Socks', 'Jam', 'Jazz', 'Journal', 'Kettle', 'Key', 'Kill', 'Kills', 'Knife', 'Knight', 'Ladle', 'Lady', 'Lake', 'Lamp', 'Leaf', 'Lemon', 'Lemonade', 'Light', 'List', 'Loaf', 'Love', 'Luna', 'Mane', 'Mess', 'Miner', 'Mint', 'Mints', 'Mist', 'Moon', 'Mouse', 'Muffin', 'Music', 'Necklace', 'Needle', 'News', 'Night', 'Nights', 'Noon', 'Note', 'Notes', 'Nova', 'Patty', 'Pepper', 'Picnic', 'Picture', 'Pie', 'Pirate', 'Pixel', 'Pony', 'Pop', 'Popper', 'Pride', 'Prism', 'Prod', 'Punk', 'Rainbow', 'Rat', 'Reaper', 'Rice', 'Ring', 'Rock', 'Roll', 'Romance', 'Rosette', 'Ruby', 'Runner', 'Saddle', 'Sapphire', 'Scapula', 'Shield', 'Shimmer', 'Shine', 'Shovel', 'Shower', 'Shy', 'Signal', 'Skies', 'Sky', 'Slapjack', 'Snap', 'Snow', 'Song', 'Soul', 'Sparkle', 'Sparky', 'Spawn', 'Sphere', 'Spider', 'Spin', 'Spirit', 'Spoon', 'Spring', 'Stairs', 'Star', 'Stars', 'Stool', 'Strike', 'String', 'Strings', 'Stripe', 'Stripes', 'Stuff', 'Summer', 'Sun', 'Swirl', 'Sword', 'Swords', 'Table', 'Tart', 'Tiara', 'Time', 'Times', 'Top', 'Tree', 'Trees', 'Trixie', 'Tron', 'Twist', 'Vise', 'Water', 'Waterfall', 'Wheat', 'Wind', 'Window', 'Wing', 'Wings', 'Winter', 'Wolf'];
 
 
-  const searchRegexp = new RegExp('\\bBackground Pony #([0-9A-F]{2})([0-9A-F]{2})\\b');
+  const searchRegexp = new RegExp('\\bAnonymous #([0-9A-F]{2})([0-9A-F]{2})\\b');
   const styleCache = new Map();
 
   function getBPName(re, match) {
@@ -45,7 +43,7 @@
 
     const spanBefore = (fullNameColor) ? '' : ponyName + ' ';
     const spanInner = (fullNameColor) ? ponyName : '•';
-    const spanAfter = (addBackgroundPony) ? ' (Background Pony)' : '';
+    const spanAfter = (addAnon) ? ' (Anonymous)' : '';
 
     const replacementString = `${spanBefore}<span title="${title}" class="${className}">${spanInner}</span>${spanAfter}`;
 
