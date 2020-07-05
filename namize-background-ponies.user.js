@@ -4,7 +4,7 @@
 // @description Namize Background Ponies on Ponybooru!
 // @icon        http://orig13.deviantart.net/d1b5/f/2017/079/6/7/derpy_by_theshadowartist100_by_vcsajen-db2xkv3.png
 // @match       https://*.ponybooru.org/*
-// @version     1.043
+// @version     1.044
 // @inject-into content
 // @noframes
 // @require     https://openuserjs.org/src/libs/soufianesakhi/node-creation-observer.js
@@ -21,8 +21,8 @@
   // false - only marker will be coloured
   const fullNameColor = false;
 
-  // change this to false if you don't wish add " (Background Pony)" to the end of anon's "names"
-  const addBackgroundPony = true;
+  // change this to false if you don't wish add " (Anonymous)" to the end of anon's "names"
+  const addAnon = true;
 
 /* ------------------------------------------------------------------------------------------------ */
 
@@ -44,7 +44,7 @@
 
     const spanBefore = (fullNameColor) ? '' : ponyName + ' ';
     const spanInner = (fullNameColor) ? ponyName : '•';
-    const spanAfter = (addBackgroundPony) ? ' (Background Pony)' : '';
+    const spanAfter = (addAnon) ? ' (Anonymous)' : '';
 
     const replacementString = `${spanBefore}<span title="${title}" class="${className}">${spanInner}</span>${spanAfter}`;
 
