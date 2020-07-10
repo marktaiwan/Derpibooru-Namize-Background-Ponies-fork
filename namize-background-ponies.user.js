@@ -1,10 +1,9 @@
 // ==UserScript==
-// @name        Namize Background Ponies!
-// @namespace   http://derpiboo.ru/images/namize_bp
-// @description Namize Background Ponies on Derpibooru!
+// @name        Ponerpics Namize Background Ponies!
+// @namespace   https://github.com/marktaiwan/
+// @description Namize Background Ponies on Ponerpics!
 // @icon        http://orig13.deviantart.net/d1b5/f/2017/079/6/7/derpy_by_theshadowartist100_by_vcsajen-db2xkv3.png
-// @match       https://*.derpibooru.org/*
-// @match       https://*.trixiebooru.org/*
+// @match       https://*.ponerpics.org/*
 // @version     1.043
 // @inject-into content
 // @noframes
