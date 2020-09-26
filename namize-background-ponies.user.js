@@ -4,7 +4,7 @@
 // @description Namize Background Ponies on Derpibooru!
 // @icon        http://orig13.deviantart.net/d1b5/f/2017/079/6/7/derpy_by_theshadowartist100_by_vcsajen-db2xkv3.png
 // @match       https://*.twibooru.org/*
-// @version     1.043
+// @version     1.044
 // @inject-into content
 // @noframes
 // @require     https://openuserjs.org/src/libs/soufianesakhi/node-creation-observer.js
