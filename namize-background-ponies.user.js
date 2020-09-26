@@ -147,7 +147,7 @@
   styleElement.id = `${SCRIPT_ID}-style`;
   document.body.insertAdjacentElement('afterend', styleElement);
 
-  const textNodes = document.evaluate( ".//a | .//strong | .//div[@class='metasection'] | .//div[contains(concat(' ', normalize-space(@class), ' '), ' post-author ')] | .//div[contains(concat(' ', normalize-space(@class), ' '), ' communication__body ')] | .//div[@class='small'] | .//div[@class='small-text'] | .//span[@class='block__header__title'] | .//td[@class='topic-lastpost'] | .//td[@class='table--communication-list__last-post'] | .//div[@id='duplicate_reporting']//td[@class='center image-cell'] | .//div[@class='block__content flex communication__options']/div[@class='flex__right'] | .//span[@class='spacing-right'] | .//main[@id='content']/h1 | .//div[@class='block__content alternating-color'] | .//div[@class='block__content flex alternating-color']/div[@class='flex__grow'] | .//td[@class='blank']",
+  const textNodes = document.evaluate( ".//span | .//a | .//strong | .//div[@class='metasection'] | .//div[contains(concat(' ', normalize-space(@class), ' '), ' post-author ')] | .//div[contains(concat(' ', normalize-space(@class), ' '), ' communication__body ')] | .//div[@class='small'] | .//div[@class='small-text'] | .//td[@class='topic-lastpost'] | .//td[@class='table--communication-list__last-post'] | .//div[@id='duplicate_reporting']//td[@class='center image-cell'] | .//div[@class='block__content flex communication__options']/div[@class='flex__right'] | .//main[@id='content']/h1 | .//div[@class='block__content alternating-color'] | .//div[@class='block__content flex alternating-color']/div[@class='flex__grow'] | .//td[@class='blank']",
     document.body,
     null,
     XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
